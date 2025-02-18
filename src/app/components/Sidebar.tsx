@@ -86,7 +86,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       />
                       <span className="font-inter text-sm">{item.name}</span>
                     </div>
-                    {item.subMenu && item.subMenu.length > 0 && (
+                    {item.name !== "Community" && (
                       <Image
                         src="/expand.svg"
                         alt="Expand"
