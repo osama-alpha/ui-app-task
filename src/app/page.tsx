@@ -8,7 +8,10 @@ export default function Home() {
 
   return (
     <div className="flex h-screen">
-      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
       <main
         className={`bg-primary text-white transition-all duration-300 ${
           isSidebarOpen ? 'w-[calc(100%-15rem)]' : 'w-full'

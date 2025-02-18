@@ -1,10 +1,16 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 const Navbar = () => {
   return (
     <nav className="flex items-center justify-between bg-primary border-b-[1px] border-b-[#262626] text-white px-6 py-5">
       <div className="relative flex items-center w-40 sm:w-64 md:w-72 lg:w-80">
-        <Image src="/searchbar.svg" width={12} height={12} alt="search" className="absolute left-3" />
+        <Image
+          src="/searchbar.svg"
+          width={12}
+          height={12}
+          alt="search"
+          className="absolute left-3"
+        />
         <input
           type="text"
           placeholder="Search"
@@ -27,7 +33,13 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Image src="/avatar.svg" alt="User Avatar" width={40} height={40} className="rounded-full" />
+          <Image
+            src="/avatar.svg"
+            alt="User Avatar"
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
           <div className="hidden sm:flex flex-col text-left">
             <p className="text-sm font-inter text-gray-400">Role of User</p>
             <p className="text-base font-inter font-medium">Andrew Smith</p>
