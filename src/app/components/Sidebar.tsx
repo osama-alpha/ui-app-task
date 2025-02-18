@@ -26,8 +26,7 @@ const Sidebar = () => {
   const [openMenus, setOpenMenus] = useState<{ [key: string]: boolean }>({});
   const [selectedMenu, setSelectedMenu] = useState<string | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-
-  //toggle the menu open when any options is clicked
+  
   const toggleMenu = (name: string) => {
     setOpenMenus((prev) => ({ ...prev, [name]: !prev[name] }));
     setSelectedMenu(name);
@@ -39,7 +38,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="relative ">
+
+<div className="relative ">
     <aside
       className={`w-60 bg-secondary text-white min-h-screen p-4 flex flex-col transition-all duration-300 ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-64"
@@ -57,13 +57,12 @@ const Sidebar = () => {
           className={`transition-transform ${isSidebarOpen ? "rotate-0" : "rotate-180"}`}
         />
       </button>
-  
       <div className="flex justify-center py-2">
         <Image src="/monkey.svg" alt="Logo" width={120} height={50} />
       </div>
-  
+
       <div className="h-[1px] bg-[#262626]"></div>
-  
+
       <nav className="flex-1 py-4">
         {menuItems.map((item) => (
           <div key={item.name}>
@@ -89,10 +88,10 @@ const Sidebar = () => {
                 />
               )}
             </button>
-  
-            {item.subMenu && item.subMenu?.length > 0 && (
+
+            {(item.subMenu && item.subMenu.length > 0) && openMenus[item.name] && (
               <div className="ml-2 pl-3 space-y-1">
-                {item.subMenu.map((sub) => (
+                {item.subMenu?.map((sub) => (
                   <a
                     key={sub.name}
                     href={sub.path}
@@ -109,21 +108,20 @@ const Sidebar = () => {
           </div>
         ))}
       </nav>
-  
+
       <div className="mt-auto mb-4 space-y-2">
         <button className="flex items-center gap-3 text-gray-400 hover:text-white w-full px-3 py-2 text-left">
           <Image src="/Settings.svg" alt="Settings" width={20} height={20} />
           <span className="font-inter text-sm">Settings</span>
         </button>
-  
+
         <button className="flex items-center gap-3 text-red-500 hover:text-red-400 w-full px-3 py-2 text-left">
           <Image src="/logout.svg" alt="Logout" width={20} height={20} />
           <span className="font-inter text-sm">Logout Account</span>
         </button>
       </div>
     </aside>
-  </div>
-  
+    </div>
   );
 };
 
