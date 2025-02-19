@@ -3,7 +3,7 @@
 import PlayerInfo from './PlayerInfoCard';
 
 const PlayerInfoContainer: React.FC = () => {
-  const PLAYER_DATA = {
+  const PLAYER_INFO_DATA = {
     userId: '6297036',
     username: 'yev_42',
     alias: '',
@@ -18,9 +18,9 @@ const PlayerInfoContainer: React.FC = () => {
     selfExclusion: 'Not self-excluded',
   };
 
-  const PLAYER_FIELDS: {
+  const PLAYER_INFO_FIELDS: {
     label: string;
-    key: keyof typeof PLAYER_DATA;
+    key: keyof typeof PLAYER_INFO_DATA;
     type?: 'active' | 'excluded' | 'expired';
   }[] = [
     { label: 'Status', key: 'status', type: 'active' },
@@ -51,8 +51,8 @@ const PlayerInfoContainer: React.FC = () => {
           <PlayerInfo
             title="Player Info"
             imageSrc="/user.svg"
-            data={PLAYER_DATA}
-            fields={PLAYER_FIELDS}
+            data={PLAYER_INFO_DATA}
+            fields={PLAYER_INFO_FIELDS}
           />
         </div>
       </div>
