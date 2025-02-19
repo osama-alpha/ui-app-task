@@ -46,10 +46,11 @@ const MenuItemComponent: React.FC<{
   selectedMenu: string | null;
   setSelectedMenu: (name: string) => void;
 }> = ({ item, openMenus, toggleMenu, selectedMenu, setSelectedMenu }) => {
-    const hasSubMenu = item.subMenu && item.subMenu.length > 0;
+  const hasSubMenu = item.subMenu && item.subMenu.length > 0;
   return (
     <div key={item.name}>
       <button
+        aria-label={`Navigate to ${item.name}`}
         className={`flex items-center justify-between w-full px-3 py-3 text-left rounded-lg hover:text-white ${
           selectedMenu === item.name ? 'text-white' : 'text-[#A3A3A3]'
         }`}
@@ -95,12 +96,18 @@ const MenuItemComponent: React.FC<{
 };
 
 const SidebarFooter: React.FC = () => (
-  <div className="mt-auto mb-4 space-y-2">
-    <button className="flex items-center gap-3 text-gray-400 hover:text-white w-full px-3 py-2 text-left">
+  <div className="mt-2 lg:mt-auto mb-4 space-y-2">
+    <button
+      aria-label="Settings"
+      className="flex items-center gap-3 text-gray-400 hover:text-white w-full px-3 py-2 text-left"
+    >
       <Image src="/Settings.svg" alt="Settings" width={20} height={20} />
       <span className="font-inter text-sm">Settings</span>
     </button>
-    <button className="flex items-center gap-3 text-red-500 hover:text-red-400 w-full px-3 py-2 text-left">
+    <button
+      aria-label="Logout"
+      className="flex items-center gap-3 text-red-500 hover:text-red-400 w-full px-3 py-2 text-left"
+    >
       <Image src="/logout.svg" alt="Logout" width={20} height={20} />
       <span className="font-inter text-sm">Logout Account</span>
     </button>
@@ -128,7 +135,8 @@ const Sidebar: React.FC<SidebarProps> = ({
       >
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="absolute top-6 -right-4 w-6 h-6 bg-secondary rounded-md
+          aria-label={isSidebarOpen ? 'Close sidebar' : 'Open sidebar'}
+          className="absolute top-6 -right-2 w-6 h-6 bg-secondary rounded-md
          flex items-center justify-center transition-transform
          hover:bg-opacity-90 focus:outline-none focus:ring-1
          focus:ring-offset-1 focus:ring-offset-primary focus:ring-secondary;"
@@ -148,7 +156,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             </div>
             <div className="h-[1px] bg-[#262626]"></div>
 
-            <nav className="flex-1 py-4">
+            <nav className="lg:flex-1 py-4">
               {MENU_ITEMS.map((item) => (
                 <MenuItemComponent
                   key={item.name}

@@ -1,10 +1,16 @@
 'use client';
-
+import { useState } from 'react';
 import PlayerInfo from './PlayerInfoCard';
 import CollapsibleCard from './PlayerInfoCollapsableCard';
+import Image from 'next/image';
+import PlayerMenu from './PlayerMenu';
 
 const PlayerInfoContainer: React.FC = () => {
+  const [isPlayerMenuOpen, setIsPlayerMenuOpen] = useState(false);
+
   const PLAYER_INFO_DATA = {
+    status: 'Active',
+    selfExclusion: 'Not self-excluded',
     userId: '6297036',
     username: 'yev_42',
     alias: '',
@@ -15,13 +21,11 @@ const PlayerInfoContainer: React.FC = () => {
     attachments: 0,
     registeredAt: '24/04/2024 14:25:25',
     lastLogin: '24/04/2024 14:25:25',
-    status: 'Active',
-    selfExclusion: 'Not self-excluded',
   };
   const PLAYER_INFO_FIELDS: {
     label: string;
     key: keyof typeof PLAYER_INFO_DATA;
-    type?: 'active' | 'excluded' | 'expired';
+    type?: 'active' | 'excluded' | 'expired' | 'time';
   }[] = [
     { label: 'Status', key: 'status', type: 'active' },
     { label: 'Self-exclusion status', key: 'selfExclusion', type: 'excluded' },
@@ -33,8 +37,8 @@ const PlayerInfoContainer: React.FC = () => {
     { label: 'Age', key: 'age' },
     { label: 'Gender', key: 'gender' },
     { label: 'Attachments', key: 'attachments' },
-    { label: 'Registered at', key: 'registeredAt' },
-    { label: 'Last login', key: 'lastLogin' },
+    { label: 'Registered at', key: 'registeredAt', type: 'time' },
+    { label: 'Last login', key: 'lastLogin', type: 'time' },
   ];
   const PLAYER_CONTACT_DATA = {
     address1: 'Rio de Janerio',
@@ -151,15 +155,45 @@ const PlayerInfoContainer: React.FC = () => {
     label: ip,
     key: `ip-${index}`,
   }));
-  return (
-    <div className="flex flex-col w-full">
-      <div className="flex items-center min-h-20 justify-between w-full px-4 py-3">
-        <h2 className="text-xl font-semibold">Player Info</h2>
 
-        <button className="bg-lime-500 text-black px-6 py-2 text-sm font-medium rounded-md hover:bg-opacity-80">
+  return (
+    <div
+      className="flex flex-col w-full"
+      onClick={() =>
+        isPlayerMenuOpen ? setIsPlayerMenuOpen(!isPlayerMenuOpen) : null
+      }
+    >
+      <div className="flex items-center min-h-20 justify-between w-full px-4 py-3">
+        <div className="flex items-center gap-2">
+          <button
+            aria-label={`${
+              isPlayerMenuOpen ? 'Close Player Menu' : 'Open Player Menu'
+            }`}
+            className="lg:hidden p-2 rounded-md bg-secondary hover:bg-opacity-80"
+            onClick={() => setIsPlayerMenuOpen(!isPlayerMenuOpen)}
+          >
+            <Image
+              src={'/menu.svg'}
+              alt="Open Player Menu"
+              height={20}
+              width={20}
+            />
+          </button>
+          <h2 className="text-xl font-semibold">Player Info</h2>
+        </div>
+
+        <button
+          aria-label="Actions"
+          className="bg-lime-500 text-black px-6 py-2 text-sm font-medium rounded-md hover:bg-opacity-80"
+        >
           + Actions
         </button>
       </div>
+      {isPlayerMenuOpen && (
+        <div className="absolute top-40 left-12 w-fit h-96 overflow-auto bg-black  z-50 rounded-lg lg:hidden">
+          <PlayerMenu />
+        </div>
+      )}
       <div className="px-4">
         <div className="flex flex-row gap-4 flex-wrap w-full py-4 border-t-[1px] border-t-[#262626]">
           <PlayerInfo

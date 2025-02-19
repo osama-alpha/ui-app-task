@@ -7,7 +7,7 @@ interface PlayerInfoProps {
   fields: {
     label: string;
     key: string;
-    type?: 'active' | 'excluded' | 'expired';
+    type?: 'active' | 'excluded' | 'expired' | 'time';
   }[];
 }
 
@@ -23,7 +23,7 @@ const PlayerInfoRow: React.FC<{ label: string; value: React.ReactNode }> = ({
 
 const StatusBadge: React.FC<{
   status: string;
-  type?: 'active' | 'excluded' | 'expired';
+  type?: 'active' | 'excluded' | 'expired' | 'time';
 }> = ({ status, type }) => (
   <span
     className={`px-2 py-0.5 text-xs font-semibold rounded-xl ${
@@ -48,7 +48,7 @@ const PlayerInfo: React.FC<PlayerInfoProps> = ({
 }) => {
   return (
     <div className="bg-secondary text-white p-4 rounded-lg shadow-md w-96 border-[1px] border-[#404040]">
-      <div className="flex items-center gap-2 pb-3 border-b border-[#262626]">
+      <div className="flex items-center gap-2 pb-3 ">
         <Image src={imageSrc} alt={title} width={20} height={20} />
         <h2 className="text-md font-semibold">{title}</h2>
       </div>
