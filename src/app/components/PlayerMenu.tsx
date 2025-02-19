@@ -28,7 +28,9 @@ const MenuItemComponent: React.FC<{ item: MenuItem }> = ({ item }) => (
     className="flex items-center space-x-3 py-2 px-3 rounded-lg hover:bg-[#2a2a2a] transition"
   >
     <Image src={item.icon} alt={item.name} width={20} height={20} />
-    <span className="text-sm">{item.name}</span>
+    <span className={`text-sm ${item.name === 'Player Info' ? 'text-white' : 'text-[#A3A3A3]'}`}>
+      {item.name}
+    </span>
   </a>
 );
 
