@@ -2,17 +2,24 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 interface InfoRowProps {
-    ip_key: string;
+  ip_key: string;
   label: string;
   value: React.ReactNode;
   highlight?: boolean;
 }
 
-const InfoRow: React.FC<InfoRowProps> = ({ ip_key, label, value, highlight }) => {
+const InfoRow: React.FC<InfoRowProps> = ({
+  ip_key,
+  label,
+  value,
+  highlight,
+}) => {
   return (
     <div className="flex justify-between items-center border-b border-[#262626] py-2 hover:opacity-80 hover:cursor-pointer">
       <span
-        className={`text-sm ${ip_key.startsWith('ip') ? 'text-white' : 'text-[#A3A3A3]'} `}
+        className={`text-sm ${
+          ip_key.startsWith('ip') ? 'text-white' : 'text-[#A3A3A3]'
+        } `}
       >
         {label}
       </span>
@@ -77,6 +84,7 @@ const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
         <div className="mt-2">
           {data.map(({ label, key, highlight }) => (
             <InfoRow
+              key={key}
               ip_key={key}
               label={label}
               value={values[key] || ''}
