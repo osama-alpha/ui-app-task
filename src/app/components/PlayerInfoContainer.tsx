@@ -10,13 +10,32 @@ const PlayerInfoContainer: React.FC = () => {
     email: 'yevgeniy+test42@monkeytilt.co',
     dob: '05/05/2000',
     age: 23,
-    gender: '-',
+    gender: 'Unknown',
     attachments: 0,
     registeredAt: '24/04/2024 14:25:25',
     lastLogin: '24/04/2024 14:25:25',
     status: 'Active',
     selfExclusion: 'Not self-excluded',
   };
+
+  const PLAYER_FIELDS: {
+    label: string;
+    key: keyof typeof PLAYER_DATA;
+    type?: 'active' | 'excluded' | 'expired';
+  }[] = [
+    { label: 'Status', key: 'status', type: 'active' },
+    { label: 'Self-exclusion status', key: 'selfExclusion', type: 'excluded' },
+    { label: 'User ID', key: 'userId' },
+    { label: 'Username', key: 'username' },
+    { label: 'Alias', key: 'alias' },
+    { label: 'Email', key: 'email' },
+    { label: 'Date of birth', key: 'dob' },
+    { label: 'Age', key: 'age' },
+    { label: 'Gender', key: 'gender' },
+    { label: 'Attachments', key: 'attachments' },
+    { label: 'Registered at', key: 'registeredAt' },
+    { label: 'Last login', key: 'lastLogin' },
+  ];
 
   return (
     <div className="flex flex-col w-full">
@@ -32,19 +51,9 @@ const PlayerInfoContainer: React.FC = () => {
           <PlayerInfo
             title="Player Info"
             imageSrc="/user.svg"
-            player={PLAYER_DATA}
+            data={PLAYER_DATA}
+            fields={PLAYER_FIELDS}
           />
-          <PlayerInfo
-            title="Player Info"
-            imageSrc="/user.svg"
-            player={PLAYER_DATA}
-          />
-          <PlayerInfo
-            title="Player Info"
-            imageSrc="/user.svg"
-            player={PLAYER_DATA}
-          />
-          
         </div>
       </div>
     </div>
