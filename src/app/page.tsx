@@ -10,7 +10,7 @@ export default function Home() {
 
   return (
     <main
-      className={`bg-primary flex  flex-row text-white transition-all duration-300  w-full`}
+      className={`bg-primary flex min-h-screen flex-row text-white transition-all duration-300  w-full`}
     >
       <Sidebar
         isSidebarOpen={isSidebarOpen}

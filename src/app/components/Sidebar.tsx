@@ -122,7 +122,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <div className="relative">
       <aside
-        className={`bg-secondary text-white min-h-screen p-4 flex flex-col transition-all duration-300 ${
+        className={`bg-secondary text-white h-full p-4 flex flex-col transition-all duration-300 ${
           isSidebarOpen ? 'w-60' : 'w-0 overflow-hidden'
         }`}
       >

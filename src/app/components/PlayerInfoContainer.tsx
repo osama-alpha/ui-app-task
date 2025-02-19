@@ -1,6 +1,7 @@
 'use client';
 
 import PlayerInfo from './PlayerInfoCard';
+import CollapsibleCard from './PlayerInfoCollapsableCard';
 
 const PlayerInfoContainer: React.FC = () => {
   const PLAYER_INFO_DATA = {
@@ -40,13 +41,12 @@ const PlayerInfoContainer: React.FC = () => {
     address2: '-',
     city_town: 'Rio de Janerio',
     post_code: '12345',
-    country: 'United States',
+    country: '🇺🇸United States',
     nationality: 'Brazilian',
     birthplace: 'Rio de Janerio/NA',
     birthname: '-',
     mothers_maiden_name: '-',
     mobile: '(123) 456-7890',
-    
   };
 
   const PLAYER_CONTACT_FIELDS: {
@@ -75,11 +75,9 @@ const PlayerInfoContainer: React.FC = () => {
     first_deposit: '-',
     affiliate_code: '-',
     tax_code: '-',
-    tc_update:  'No',
-    tc_accepted:  'Active',
-    registration_channel2:  '0',
-
-    
+    tc_update: 'No',
+    tc_accepted: 'Active',
+    registration_channel2: '0',
   };
 
   const PLAYER_MISC_INFO_FIELDS: {
@@ -88,20 +86,71 @@ const PlayerInfoContainer: React.FC = () => {
     type?: 'active' | 'excluded' | 'expired';
   }[] = [
     { label: 'Language', key: 'language' },
-    { label: 'E-mail marketing consent', key: 'email_m_consent', type: 'expired' },
+    {
+      label: 'E-mail marketing consent',
+      key: 'email_m_consent',
+      type: 'expired',
+    },
     { label: 'SMS Marketing Consent', key: 'sms_m_consent', type: 'active' },
     { label: 'Intended extent of gambling', key: 'intended_gambling' },
     { label: 'Registered by', key: 'registered_by' },
-    { label: 'Reistration Channel', key: 'registration_channel' },
+    { label: 'Registration Channel', key: 'registration_channel' },
     { label: 'First Deposit at', key: 'first_deposit' },
     { label: 'Affiliate Code', key: 'affiliate_code' },
     { label: 'Tax Code', key: 'tax_code' },
     { label: 'Last T&C update type', key: 'tc_update' },
-    { label: 'General T&C accepted', key: 'tc_accepted', type:'active' },
-    { label: 'Registartion Channel', key: 'registration_channel2' },
-
+    { label: 'General T&C accepted', key: 'tc_accepted', type: 'active' },
+    { label: 'Registration Channel', key: 'registration_channel2' },
   ];
 
+  const BALANCE_INFO = {
+    realCash: '$9,982.80',
+    bonusCash: '$210.00',
+    realLocked: '$0.00',
+    negativeRemainder1: '$0.00',
+    highlightedRemainder: '$10,192.80',
+  };
+
+  const BALANCE_FIELDS = [
+    { label: 'GmWallet.RealCash', key: 'realCash' },
+    { label: 'GmWallet.BonusCash', key: 'bonusCash' },
+    { label: 'GmWallet.RealLocked', key: 'realLocked' },
+    { label: 'GmWallet.RealNegativeRemainder', key: 'negativeRemainder2' },
+    {
+      label: 'GmWallet.RealNegativeRemainder',
+      key: 'highlightedRemainder',
+      highlight: true,
+    },
+  ];
+
+  const SECURITY_INFO = {
+    personalId: '-',
+    iban: '-',
+    twoFactorAuth: 'None',
+    securityQuestion: 'what is my pet name',
+    securityAnswer: 'saimi',
+  };
+
+  const SECURITY_FIELDS = [
+    { label: 'Personal ID', key: 'personalId' },
+    { label: 'IBAN', key: 'iban' },
+    { label: '2nd Factor Auth', key: 'twoFactorAuth' },
+    { label: 'Security question', key: 'securityQuestion' },
+    { label: 'Security answer', key: 'securityAnswer' },
+  ];
+
+  const IP_ADDRESSES = [
+    '🇧🇩 154.192.48.49',
+    '🇵🇱 103.126.7.226',
+    '🇵🇰 46.37.97.68',
+    '🇵🇱 154.192.48.49',
+    '🇵🇰 154.192.48.49',
+  ];
+
+  const IP_FIELDS = IP_ADDRESSES.map((ip, index) => ({
+    label: ip,
+    key: `ip-${index}`,
+  }));
   return (
     <div className="flex flex-col w-full">
       <div className="flex items-center min-h-20 justify-between w-full px-4 py-3">
@@ -130,6 +179,24 @@ const PlayerInfoContainer: React.FC = () => {
             imageSrc="/Misc.svg"
             data={PLAYER_MISC_INFO_DATA}
             fields={PLAYER_MISC_INFO_FIELDS}
+          />
+          <CollapsibleCard
+            title="BALANCE INFO"
+            imageSrc="/transactionsIcon.svg"
+            data={BALANCE_FIELDS}
+            values={BALANCE_INFO}
+          />
+          <CollapsibleCard
+            title="Security Info"
+            imageSrc="/Misc.svg"
+            data={SECURITY_FIELDS}
+            values={SECURITY_INFO}
+          />
+          <CollapsibleCard
+            title="IP Addresses"
+            imageSrc="/location.svg"
+            data={IP_FIELDS}
+            values={IP_ADDRESSES}
           />
         </div>
       </div>

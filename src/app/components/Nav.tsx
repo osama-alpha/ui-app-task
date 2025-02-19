@@ -20,7 +20,13 @@ const Navbar = () => {
 
       <div className="flex items-center gap-6">
         <div className="hidden md:flex items-center gap-4">
-          <Image src="/mail.svg" alt="mail icon" width={24} height={24} />
+          <Image
+            src="/mail.svg"
+            alt="mail icon"
+            width={24}
+            height={24}
+            className="hover:cursor-pointer hover:opacity-80"
+          />
 
           <div className="w-[1px] h-6 bg-[#262626]"></div>
 
@@ -29,6 +35,7 @@ const Navbar = () => {
             alt="notifications icon"
             width={24}
             height={24}
+            className="hover:cursor-pointer hover:opacity-80"
           />
         </div>
 
