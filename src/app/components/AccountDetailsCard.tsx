@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-interface PlayerInfoProps {
+interface AcountDetailsCardProps {
   title: string;
   imageSrc: string;
   data: Record<string, any>;
@@ -11,7 +11,7 @@ interface PlayerInfoProps {
   }[];
 }
 
-const PlayerInfoRow: React.FC<{ label: string; value: React.ReactNode }> = ({
+const AcountDetailsCardRow: React.FC<{ label: string; value: React.ReactNode }> = ({
   label,
   value,
 }) => (
@@ -40,7 +40,7 @@ const StatusBadge: React.FC<{
   </span>
 );
 
-const PlayerInfo: React.FC<PlayerInfoProps> = ({
+const AcountDetailsCard: React.FC<AcountDetailsCardProps> = ({
   title,
   imageSrc,
   data,
@@ -55,7 +55,7 @@ const PlayerInfo: React.FC<PlayerInfoProps> = ({
 
       <div>
         {fields.map(({ label, key, type }) => (
-          <PlayerInfoRow
+          <AcountDetailsCardRow
             key={key}
             label={label}
             value={
@@ -72,4 +72,4 @@ const PlayerInfo: React.FC<PlayerInfoProps> = ({
   );
 };
 
-export default PlayerInfo;
+export default AcountDetailsCard;

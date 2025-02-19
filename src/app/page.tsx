@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import Navbar from './components/Nav';
 import Sidebar from './components/Sidebar';
-import PlayerMenu from './components/PlayerMenu';
-import PlayerInfoContainer from './components/PlayerInfoContainer';
+import SidebarContainer from './components/SidebarContainer';
+import ContentContainer from './components/ContentContainer';
 
 export default function Home() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -26,11 +26,11 @@ export default function Home() {
       >
         <Navbar />
         {/* <div className="flex"> */}
-        <div className="flex w-full h-full  ">
+        <div className={`flex w-full h-full`}>
           <div className="hidden  lg:block lg:border-r-[1px] border-r-[#262626]">
-            <PlayerMenu />
+            <SidebarContainer />
           </div>
-          <PlayerInfoContainer />
+          <ContentContainer />
         </div>
         {/* </div> */}
       </div>

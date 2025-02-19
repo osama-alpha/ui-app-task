@@ -32,14 +32,14 @@ const InfoRow: React.FC<InfoRowProps> = ({
   );
 };
 
-interface CollapsibleCardProps {
+interface SummaryCardProps {
   title: string;
   imageSrc: string;
   data: { label: string; key: string; highlight?: boolean }[];
   values: Record<string, any>;
 }
 
-const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
+const SummaryCard: React.FC<SummaryCardProps> = ({
   title,
   imageSrc,
   data,
@@ -97,4 +97,4 @@ const CollapsibleCard: React.FC<CollapsibleCardProps> = ({
   );
 };
 
-export default CollapsibleCard;
+export default SummaryCard;

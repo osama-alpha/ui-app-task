@@ -1,12 +1,12 @@
 'use client';
 import { useState } from 'react';
-import PlayerInfo from './PlayerInfoCard';
-import CollapsibleCard from './PlayerInfoCollapsableCard';
+import AccountDetailsCard from './AccountDetailsCard';
+import SummaryCard from './SummaryCard';
 import Image from 'next/image';
-import PlayerMenu from './PlayerMenu';
+import SidebarContainer from './SidebarContainer';
 
-const PlayerInfoContainer: React.FC = () => {
-  const [isPlayerMenuOpen, setIsPlayerMenuOpen] = useState(false);
+const ContentContainer: React.FC = () => {
+  const [isSidebarContainerOpen, setIsSidebarContainerOpen] = useState(false);
 
   const PLAYER_INFO_DATA = {
     status: 'Active',
@@ -160,17 +160,17 @@ const PlayerInfoContainer: React.FC = () => {
     <div
       className="flex flex-col w-full"
       onClick={() =>
-        isPlayerMenuOpen ? setIsPlayerMenuOpen(!isPlayerMenuOpen) : null
+        isSidebarContainerOpen ? setIsSidebarContainerOpen(!isSidebarContainerOpen) : null
       }
     >
       <div className="flex items-center min-h-20 justify-between w-full px-4 py-3">
         <div className="flex items-center gap-2">
           <button
             aria-label={`${
-              isPlayerMenuOpen ? 'Close Player Menu' : 'Open Player Menu'
+              isSidebarContainerOpen ? 'Close Player Menu' : 'Open Player Menu'
             }`}
             className="lg:hidden p-2 rounded-md bg-secondary hover:bg-opacity-80"
-            onClick={() => setIsPlayerMenuOpen(!isPlayerMenuOpen)}
+            onClick={() => setIsSidebarContainerOpen(!isSidebarContainerOpen)}
           >
             <Image
               src={'/menu.svg'}
@@ -189,44 +189,44 @@ const PlayerInfoContainer: React.FC = () => {
           + Actions
         </button>
       </div>
-      {isPlayerMenuOpen && (
+      {isSidebarContainerOpen && (
         <div className="absolute top-40 left-12 w-fit h-96 overflow-auto bg-black  z-50 rounded-lg lg:hidden">
-          <PlayerMenu />
+          <SidebarContainer />
         </div>
       )}
       <div className="px-4">
         <div className="flex flex-row gap-4 flex-wrap w-full py-4 border-t-[1px] border-t-[#262626]">
-          <PlayerInfo
+          <AccountDetailsCard
             title="Player Info"
             imageSrc="/user.svg"
             data={PLAYER_INFO_DATA}
             fields={PLAYER_INFO_FIELDS}
           />
-          <PlayerInfo
+          <AccountDetailsCard
             title="Contact Info"
             imageSrc="/phone.svg"
             data={PLAYER_CONTACT_DATA}
             fields={PLAYER_CONTACT_FIELDS}
           />
-          <PlayerInfo
+          <AccountDetailsCard
             title="Additional Misc Info "
             imageSrc="/Misc.svg"
             data={PLAYER_MISC_INFO_DATA}
             fields={PLAYER_MISC_INFO_FIELDS}
           />
-          <CollapsibleCard
+          <SummaryCard
             title="BALANCE INFO"
             imageSrc="/transactionsIcon.svg"
             data={BALANCE_FIELDS}
             values={BALANCE_INFO}
           />
-          <CollapsibleCard
+          <SummaryCard
             title="Security Info"
             imageSrc="/Misc.svg"
             data={SECURITY_FIELDS}
             values={SECURITY_INFO}
           />
-          <CollapsibleCard
+          <SummaryCard
             title="IP Addresses"
             imageSrc="/location.svg"
             data={IP_FIELDS}
@@ -238,4 +238,4 @@ const PlayerInfoContainer: React.FC = () => {
   );
 };
 
-export default PlayerInfoContainer;
+export default ContentContainer;

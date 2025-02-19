@@ -57,7 +57,7 @@ const AssignedRoles: React.FC<{ roles: string[] }> = ({ roles }) => (
   </div>
 );
 
-const PlayerMenu = () => {
+const SidebarContainer = () => {
   return (
     <aside className=" w-72 h-full text-white p-4 flex flex-col transition-all duration-300">
       <div className="flex items-center space-x-3 p-3 rounded-lg bg-secondary">
@@ -94,4 +94,4 @@ const PlayerMenu = () => {
 };
 
 
-export default PlayerMenu;
+export default SidebarContainer;
